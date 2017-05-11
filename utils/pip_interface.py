@@ -9,25 +9,28 @@ def get_package_names():
     return installed_packages
 
 # Take a package name as an argument and return all python packages that it depends on
+# Raises ValueError if package not installed
 def get_package_dependencies(package_name):
     try:
         # Obtain package requirements as a string
         deps = get_package_details(package_name)['Requires']
     except KeyError:
-        return []
+        raise ValueError("Invalid package name: " + package_name)
+    except ValueError:
+        raise
 
     # Return dependencies in list form
     deps_list = [dep.strip() for dep in deps.split(",")]
     return deps_list
 
 # Function to retrieve all details about the given package and return them as a dictionary
-# Package must be installed in order to function correctly
+# Package must be installed, otherwise will raise ValueError
 def get_package_details(package_name):
     try:
         # Call pip show on the package
         output = subprocess.check_output(["pip", "show", package_name])
     except subprocess.CalledProcessError:
-        return {}
+        raise ValueError("Invalid package name: " + package_name)
     
     details = {}
 
