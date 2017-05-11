@@ -1,2 +1,2 @@
 # pipd
-Pip extension to track dependencies
+Pip add-on to track dependencies
