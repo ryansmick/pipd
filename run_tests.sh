@@ -11,10 +11,14 @@ echo "Created virtual environment: " $VIRTUAL_ENV_NAME
 echo "Activating virtual environment..."
 source $VIRTUAL_ENV_NAME/bin/activate
 
-# Run the tests inside the virtual env
+# Run the tests inside the virtual env and store exit status
 echo "Running tests..."
 python -m unittest discover -v tests
+EXIT_STATUS=$?
 
 # Deactivate and remove the virtual env
 echo "Cleaning up virtual environment..."
 rm -rf $VIRTUAL_ENV_NAME
+
+#Exit with the exit status of the tests
+exit $EXIT_STATUS
