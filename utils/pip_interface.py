@@ -25,7 +25,7 @@ def get_package_dependencies(package_name):
         raise
 
     # Return dependencies in list form
-    deps_set = set(dep.strip() for dep in deps.split(","))
+    deps_set = set(dep.strip() for dep in deps.split(",") if dep.strip() != '')
     return deps_set
 
 # Function to retrieve all details about the given package and return them as a dictionary

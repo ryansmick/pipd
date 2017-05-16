@@ -11,6 +11,12 @@ class TestPipInterface(BaseTest):
         packages = pip_interface.get_package_names()
         self.assertSubset(self.installed_packages, packages)
 
+    def test_get_package_deps(self):
+        expected_deps = {"six", "pyparsing"}
+        deps = pip_interface.get_package_dependencies("packaging")
+
+        self.assertEqual(deps, expected_deps)
+
     # Helper function to ensure that subset is a subset of superset
     def assertSubset(self, subset, superset):
         for package in subset:
