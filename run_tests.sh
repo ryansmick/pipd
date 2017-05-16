@@ -13,9 +13,8 @@ source $VIRTUAL_ENV_NAME/bin/activate
 
 # Run the tests inside the virtual env
 echo "Running tests..."
-python -m unittest discover tests
+python -m unittest discover -v tests
 
 # Deactivate and remove the virtual env
 echo "Cleaning up virtual environment..."
-deactivate
 rm -rf $VIRTUAL_ENV_NAME
