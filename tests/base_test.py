@@ -6,7 +6,7 @@ import time
 class BaseTest(unittest.TestCase):
 
     base_packages = {"six", "packaging", "pyparsing", "appdirs"}
-    packages_to_install = {"pygame"}
+    packages_to_install = set()
     installed_packages = base_packages | packages_to_install
 
     def setUp(self):
