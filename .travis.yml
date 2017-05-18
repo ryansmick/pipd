@@ -3,4 +3,4 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-script: ./run_tests.sh
+script: doctest -m unittest discover tests
