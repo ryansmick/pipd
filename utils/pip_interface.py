@@ -10,7 +10,8 @@ def get_package_names():
     split_output = output.split("\n")
     for line in split_output:
         name = line.split("=")[0].strip()
-        installed_packages.add(name)
+        if name:
+            installed_packages.add(name)
     return installed_packages
 
 # Take a package name as an argument and return all python packages that it depends on
