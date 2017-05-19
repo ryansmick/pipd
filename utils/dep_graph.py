@@ -1,8 +1,7 @@
 # Contains a class DepGraph that represents a pip dependency graph
-import pip_interface
-import package_node
+from . import pip_interface
 from termcolor import colored
-from package_node import PackageNode
+from .package_node import PackageNode
 
 # Class to represent the pip dependency graph
 class DepGraph:

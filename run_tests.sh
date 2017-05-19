@@ -11,6 +11,10 @@ echo "Created virtual environment: " $VIRTUAL_ENV_NAME
 echo "Activating virtual environment..."
 source $VIRTUAL_ENV_NAME/bin/activate
 
+# Install the requirements to run the tests in the virtual env
+echo "Installing dependencies for tests..."
+pip install -r requirements.txt
+
 # Run the tests inside the virtual env and store exit status
 echo "Running tests..."
 python -m unittest discover -v tests

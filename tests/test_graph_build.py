@@ -5,7 +5,7 @@ from utils.package_node import PackageNode
 # Test the dependency graph building functionality
 class TestGraphBuild(unittest.TestCase):
 
-    # Test pip_interface.get_package_names() function
+    # Test adding dependencies to PackageNodes functions properly
     def test_adding_dependency(self):
         # Define the two packages
         package1 = PackageNode('package1')
