@@ -52,7 +52,10 @@ def get_package_details(package_name):
 def uninstall(package_name):
     try:
         # Call pip uninstall on the package
-        uninstall_command = ["echo", "y", "|", "pip", "uninstall", package_name]
-        subprocess.check_call(uninstall_command, stdout=subprocess.DEVNULL)
+        uninstall_command = ["pip", "uninstall", package_name]
+        ps = subprocess.Popen(("echo", "y"), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        subprocess.check_call(uninstall_command, stdin=ps.stdout, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        #ps.wait()
+        ps.kill()
     except subprocess.CalledProcessError:
         raise ValueError("Invalid package name: " + package_name)

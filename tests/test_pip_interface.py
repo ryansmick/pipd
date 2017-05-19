@@ -27,7 +27,8 @@ class TestPipInterface(BaseTest):
     # Test that uninstall raises a ValueError on incorrect input
     def test_uninstall_raises_ValueError(self):
         package_to_uninstall = "siz"
-        self.assertRaises(ValueError, pip_interface.uninstall(package_to_uninstall))
+        with self.assertRaises(ValueError):
+            pip_interface.uninstall(package_to_uninstall)
 
     # Helper function to ensure that subset is a subset of superset
     def assertSubset(self, subset, superset):

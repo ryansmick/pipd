@@ -15,7 +15,7 @@ class BaseTest(unittest.TestCase):
 
         # Install packages to virtual env
         try:
-            for package in BaseTest.packages_to_install:
-                subprocess.check_call(pip_install_command + [package], stdout=subprocess.DEVNULL)
+            for package in BaseTest.installed_packages:
+                subprocess.check_call(pip_install_command + [package], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         except subprocess.CalledProcessError:
             raise
