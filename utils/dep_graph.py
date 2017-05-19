@@ -21,7 +21,12 @@ class DepGraph:
         # Add dependencies for each pip package
         for package_name, package in self.packages.items():
             for dep_name in pip_interface.get_package_dependencies(package_name):
-                package.add_dependency(self.packages[dep_name])
+                try:
+                    package.add_dependency(self.packages[dep_name])
+                except KeyError:
+                    # If dependency isn't in self.packages, package either isn't installed and we will not worry about it
+                    # Or package is a default pip package that doesn't appear in pip freeze, and we won't worry about it
+                    pass
 
     # Function to print a graph representation of the given dependency graph
     def print_graph(self):
