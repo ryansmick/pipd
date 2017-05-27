@@ -51,3 +51,20 @@ class DepGraph:
 
         for child_name, child_node in package_node.dependencies.items():
             self.print_graph_from_node(child_node, marked, tabs=tabs+1)
+
+    # Function to uninstall a given package and all it's dependencies
+    def uninstall(self, package_name):
+        if package_name not in self.packages:
+            raise ValueError("Package {} not found.".format(package_name))
+
+        package = self.packages[package_name]
+
+        # If package is being depended upon, prompt user for uninstall
+        if package.ref_count != 0:
+            answer = input("{} is a dependency for another installed package. Are you sure you want to remove it? Y/n: ".format(package_name))
+            if lower(answer) not in ["y", "yes"]:
+                print("Aborting...")
+                return
+
+        # Recursively uninstall the package
+        package.uninstall()
