@@ -17,7 +17,7 @@ pip install -r requirements.txt > /dev/null
 
 # Run the tests inside the virtual env and store exit status
 echo "Running tests..."
-python -m unittest discover -v tests
+python -m unittest discover -v pipd/tests
 EXIT_STATUS=$?
 
 # Deactivate and remove the virtual env

@@ -1,7 +1,7 @@
 import unittest
-from base_test import BaseTest 
-from utils.dep_graph import DepGraph
-from utils import pip_interface
+from pipd.tests.base_test import BaseTest 
+from pipd.utils.dep_graph import DepGraph
+from pipd.utils import pip_interface
 
 # Test the integrations between the pip_interface and the dep_graph
 class TestUtilsIntegration(BaseTest):
