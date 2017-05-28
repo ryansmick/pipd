@@ -31,7 +31,6 @@ class TestUninstall(unittest.TestCase):
         # Assertions for initial state
         self.assertIn("packaging", graph.packages, "Packaging package not initially installed in environment")
         self.assertIn("pyparsing", graph.packages, "Pyparsing package not initially installed in environment")
-        self.assertIn("six", graph.packages, "Six package not initially installed in environment")
 
         # Perform uninstall
         graph.uninstall("packaging")
@@ -39,7 +38,6 @@ class TestUninstall(unittest.TestCase):
         # Post-action assertions
         self.assertTrue("packaging" not in pip_interface.get_package_names(), "Packaging still installed")
         self.assertTrue("pyparsing" not in pip_interface.get_package_names(), "Pyparsing still installed")
-        self.assertTrue("six" not in pip_interface.get_package_names(), "Six still installed")
 
     # Test removing a nonexistent package raises a ValueError
     def test_removing_bad_package_raises_ValueError(self):

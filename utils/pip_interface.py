@@ -1,15 +1,16 @@
 # Utility file to parse various pip commands to retrieve information
 
 import subprocess
+import re
 
 # This function is used to parse the contents of pip freeze and return names of all installed python packages
 def get_package_names():
-    freeze_command = ["pip", "freeze"]
-    output = subprocess.check_output(freeze_command).decode()
+    freeze_command = ["pip", "list"]
+    output = subprocess.check_output(freeze_command, stderr=subprocess.DEVNULL).decode()
     installed_packages = set()
     split_output = output.split("\n")
     for line in split_output:
-        name = line.split("=")[0].strip()
+        name = re.split("[ \t]", line)[0].strip()
         if name:
             installed_packages.add(name)
     return installed_packages
@@ -56,6 +57,6 @@ def uninstall(package_name):
         ps = subprocess.Popen(("echo", "y"), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
         subprocess.check_call(uninstall_command, stdin=ps.stdout, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         #ps.wait()
-        ps.kill()
+        ps.wait()
     except subprocess.CalledProcessError:
         raise ValueError("Invalid package name: " + package_name)
