@@ -1,6 +1,6 @@
 import unittest
-from utils import pip_interface
-from base_test import BaseTest 
+from pipd.utils import pip_interface
+from pipd.tests.base_test import BaseTest 
 import subprocess
 
 # Test the utilities defined in pip_interface.py

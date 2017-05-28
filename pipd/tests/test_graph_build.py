@@ -1,6 +1,6 @@
 import unittest
-from base_test import BaseTest 
-from utils.package_node import PackageNode
+from pipd.tests.base_test import BaseTest 
+from pipd.utils.package_node import PackageNode
 
 # Test the dependency graph building functionality
 class TestGraphBuild(unittest.TestCase):
