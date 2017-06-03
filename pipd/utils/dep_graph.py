@@ -9,6 +9,14 @@ class DepGraph:
     def __init__(self):
         self.packages = {} # Map from package name to PackageNode object
 
+    # Function to return the reference count of a given package
+    # Throws a ValueError if the package doesn't exist in the graph
+    def get_ref_count(self, package_name):
+        try:
+            return self.packages[package_name.lower()].ref_count
+        except KeyError:
+            raise ValueError('Package "{}" is not installed'.format(package_name))
+
     # Function to build the dependency graph
     def build_graph(self):
         # Reset the packages
@@ -55,7 +63,7 @@ class DepGraph:
     # Function to uninstall a given package and all it's dependencies
     def uninstall(self, package_name):
         # If package isn't found, raise a ValueError
-        if package_name not in self.packages:
+        if package_name.lower() not in self.packages:
             raise ValueError("Package {} not found.".format(package_name))
 
         package = self.packages[package_name]

@@ -12,7 +12,7 @@ def get_package_names():
     for line in split_output:
         name = re.split("[ \t]", line)[0].strip()
         if name:
-            installed_packages.add(name)
+            installed_packages.add(name.lower())
     return installed_packages
 
 # Take a package name as an argument and return all python packages that it depends on
@@ -27,7 +27,7 @@ def get_package_dependencies(package_name):
         raise
 
     # Return dependencies in list form
-    deps_set = set(dep.strip() for dep in deps.split(",") if dep.strip() != '')
+    deps_set = set(dep.strip().lower() for dep in deps.split(",") if dep.strip() != '')
     return deps_set
 
 # Function to retrieve all details about the given package and return them as a dictionary
