@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+import pip
+import argparse
+import sys
+from pipd.utils.dep_graph import DepGraph
+
+# Function to uninstall the given list of packages
+def uninstall(packages):
+    graph = DepGraph()
+    for package in packages:
+        graph.build_graph()
+        try:
+            ref_count = graph.get_ref_count(package)
+        except ValueError:
+            print('Package "{}" is not isntalled. Skipping...'.format(package))
+            continue
+
+        # If the reference count is greater than 0, promp user for package removal
+        rm_package = False
+        if ref_count > 0:
+            choice = input('Package "{}" is depended upon by another package. Do you still wish to remove it? (Y/n) '.format(package))
+            if choice.lower() in ("y", "yes"):
+                rm_package = True
+            else:
+                print('Skipping package "{}"'.format(package))
+        else:
+            rm_package = True
+
+        if rm_package:
+            print('Attempting to remove package "{}"'.format(package))
+            try:
+                graph.uninstall(package)
+                print("Removal successful")
+            except ValueError:
+                print("Removal failed. Package is not currently installed")
+
+def tree():
+    graph = DepGraph()
+    graph.build_graph()
+    graph.print_graph()
+
+if __name__ == "__main__":
+    # Create an argument parser to process command line arguments
+    command_parser = argparse.ArgumentParser(description="Interface for pip with dependency tracking")
+    command_parser.add_argument("command", help="The pipd command you wish to execute. Options: uninstall, tree")
+    
+    # Parse command line arguments
+    try:
+        args = command_parser.parse_args([sys.argv[1]])
+    except IndexError:
+        command_parser.parse_args([])
+
+    # Process individual commands
+    if args.command == "uninstall":
+        argument_parser = argparse.ArgumentParser(description="Uninstall given pip packages and their dependencies")
+        argument_parser.add_argument("command", help="The pipd command you wish to execute. Options: uninstall, tree")
+        argument_parser.add_argument("packages", nargs="+", help="Packages to remove.")
+        args = argument_parser.parse_args(sys.argv[1:])
+        uninstall(args.packages)
+    elif args.command == "tree":
+        tree()
+    else:
+        print('Unknown command "{}". Possible commands:\n\ttree\n\tuninstall'.format(args.command))
