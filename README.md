@@ -32,3 +32,4 @@ Pipd was made for use within virtual environments, and using it to uninstall pac
 * Update tree printing algorithm
 * Update graph after uninstall
 * Add method to save and load graph from file rather than building fresh each time
+* Create new algorithm to handle circular dependencies
