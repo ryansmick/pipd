@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='pipd',
-    version='0.1',
+    version='0.2',
     description='Extension of pip with built-in dependency tracking',
     packages=['pipd', 'pipd.utils'],
     scripts=['bin/pipd'],

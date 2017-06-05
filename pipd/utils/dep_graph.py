@@ -40,7 +40,8 @@ class DepGraph:
     def print_graph(self):
         marked = set()
         for package_name, package in self.packages.items():
-            self.print_graph_from_node(package, marked, 0)
+            if package.ref_count == 0:
+                self.print_graph_from_node(package, marked, 0)
 
     # Recursive helper function to print graph starting at a given node
     def print_graph_from_node(self, package_node, marked, tabs=0):
