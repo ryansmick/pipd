@@ -3,7 +3,7 @@ Pip add-on to track dependencies
 
 ## Purpose
 
-By default, pip doesn't include an effective dependency tracking method for packages that are installed. I realized this one day when I went to uninstall a package with what felt like a million dependencies and all that pip removed was the top-level package. This didn't seem right to me, since I no longer needed the other 100 packages that were installed with that single pip command. For that reason, I decided to create a toolto track dependencies among installed packages and to uninstall all the packages that are no longer needed as dependencies for a removed package. Thus, pipd was born.
+By default, pip doesn't include an effective dependency tracking method for packages that are installed. I realized this one day when I went to uninstall a package with what felt like a million dependencies and all that pip removed was the top-level package. This didn't seem right to me, since I no longer needed the other 100 packages that were installed with that single pip command. For that reason, I decided to create a tool to track dependencies among installed packages and to uninstall all the packages that are no longer needed as dependencies for a removed package. Thus, pipd was born.
 
 ## Installation
 
