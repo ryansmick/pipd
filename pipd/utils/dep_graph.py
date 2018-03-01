@@ -1,11 +1,11 @@
 # Contains a class DepGraph that represents a pip dependency graph
-from . import pip_interface
+from pipd.utils import pip_interface
 from termcolor import colored
-from .package_node import PackageNode
+from pipd.utils.package_node import PackageNode
 
 # Class to represent the pip dependency graph
 class DepGraph:
-    # Initialize a dictionary of package names to DepNodePGraph objects
+    # Initialize a dictionary of package names to DepNodeGraph objects
     def __init__(self):
         self.packages = {} # Map from package name to PackageNode object
 

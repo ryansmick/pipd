@@ -1,5 +1,5 @@
 # Contains a class PackageNode that represents a given pip package in the dependency graph
-from . import pip_interface 
+from pipd.utils import pip_interface 
 
 # Class to represent a node in the dependency graph containing information about a given pip package
 class PackageNode:
